@@ -1,0 +1,184 @@
+CLIENT ACCESS SCRIPT
+__________________________________________________
+CREATE TABLE clientassets (
+assetsid int auto_increment not null primary key,
+name VARCHAR(20),
+type VARCHAR(25),
+price DECIMAL,
+clientid int not null,
+FOREIGN KEY (clientid) references clients(clientid)
+);
+
+
+INSERT INTO clientassets(name, type, price, clientid)
+VALUES('JONES ASSOCIATION', 'Teacher Club', '45000','1');
+
+INSERT INTO clientassets(name, type, price, clientid)
+VALUES('MARQUIS TRUCKING ','Trucking','115785','2');
+
+INSERT INTO clientassets(name, type, price, clientid)
+VALUES('SHANTELL TRADING ','Stock Trading','96785','3');
+
+INSERT INTO clientassets(name, type, price, clientid)
+VALUES('DAVID VOLTAGE LLC','Electrician','75854','4');
+
+INSERT INTO clientassets(name, type, price, clientid)
+VALUES('MARK FIGHTS FIRES','FIREFIRE ASSOC','68745','5');
+
+INSERT INTO clientassets(name, type, price, clientid)
+VALUES('AMY BAKERY','CULINARY','87456','6');
+
+SELECT * FROM clientassets;
+
+______________________________________________________________________________
+
+******CLIENT TRANSACTIONS
+CREATE TABLE clienttransactions(
+transid int auto_increment not null primary key,
+type varchar(20),
+otherparty varchar(20),
+amount DECIMAL,
+clientid int not null,
+foreign key (clientid) references clients(clientid)
+);
+
+
+
+INSERT INTO clienttransactions (type, otherparty,amount,clientid)
+VALUES ('credit card', 'n','14563','1');
+
+INSERT INTO clienttransactions (type, otherparty,amount,clientid)
+VALUES ('check', 'n','74765','2');
+
+INSERT INTO clienttransactions (type, otherparty,amount,clientid)
+VALUES ('credit card', 'y','4085','3');
+
+INSERT INTO clienttransactions (type, otherparty,amount,clientid)
+VALUES ('credit card', 'n','78456','4');
+
+
+INSERT INTO clienttransactions (type, otherparty,amount,clientid)
+VALUES ('cash', 'y','736544','5');
+
+
+INSERT INTO clienttransactions (type, otherparty,amount,clientid)
+VALUES ('credit card', 'y','5263','6');
+
+SELECT * FROM clienttransactions;
+
+_______________________________________________________________________
+
+
+****Employees_Script*******
+
+USE wilsonfinancial;
+
+CREATE TABLE employees(
+ empid int NOT NULL AUTO_INCREMENT ,
+ name VARCHAR(20),
+ phone VARCHAR(10),
+ email VARCHAR(30),
+ address VARCHAR(25),
+ city VARCHAR(25),
+ state VARCHAR(2),
+ zip CHAR (10),
+ department VARCHAR (20),
+ PRIMARY KEY (empid)
+);
+
+DESCRIBE employees;
+
+INSERT INTO employees(name,phone,email,address,city,state,zip,department)
+Values('Jake Wilson', '2084574512','jwilson@wilsonfinancial.com',
+'123 Commerce St','New York','NY','10002','Operations');
+
+INSERT INTO employees(name,phone,email,address,city,state,zip,department)
+Values('Ned Wilson', '2087631489','nwilson@wilsonfinancial.com',
+'123 Commerce St','New York','NY','10002','Operations');
+
+INSERT INTO employees(name,phone,email,address,city,state,zip,department)
+Values('Phoenix TwoStar', '2074430712','ptwostar@wilsonfinancial.com',
+'123 Commerce St','New York','NY','10002','Operations');
+
+INSERT INTO employees(name,phone,email,address,city,state,zip,department)
+Values('June Santos', '7703894637','jsantos@wilsonfinancial.com',
+'123 Commerce St','New York','NY','10002','Quality Assurance');
+
+
+
+DESCRIBE employees;
+
+SELECT * FROM employees;
+
+
+
+_________________________________________________________________________
+
+*****PORTAL LOGIN****
+
+CREATE TABLE portallogin (
+portalid int auto_increment not null primary key,
+username varchar(20),
+password varchar(25),
+empid int not null,
+foreign key (empid) references employees(empid)
+
+);
+
+
+INSERT INTO portallogin  (username, password,empid)
+VALUES ('jakeexe', 'Welcome','1');
+
+INSERT INTO portallogin  (username, password,empid)
+VALUES ('nedexe', 'Welcome','2');
+
+INSERT INTO portallogin  (username, password,empid)
+VALUES ('phoenix2', 'Welcome','3');
+
+INSERT INTO portallogin  (username, password,empid)
+VALUES ('junesantos', 'Welcome','4');
+
+SELECT * FROM portallogin;
+
+________________________________________________________________
+
+
+****CLIENTS 
+
+USE wilsonfinancial;
+SELECT * FROM clients;
+CREATE TABLE table_name (
+  clientid INT,
+  name VARCHAR(255),
+  occupation VARCHAR(255),
+  transactions INT,
+  assets INT,
+  income INT,
+  address VARCHAR(255),
+  city VARCHAR(255),
+  state VARCHAR(255),
+  zip VARCHAR(255),
+  email VARCHAR(255),
+  empid INT
+);
+
+INSERT INTO table_name (clientid, name, occupation, transactions, assets, income, address, city, state, zip, email, empid)
+VALUES ('1', 'Alicia Jones', 'Teacher', '5', '10700', '65700', '325 Walter st', 'Orlando', 'FL', '74563', 'ajones@gmail.com', '1');
+
+INSERT INTO table_name (clientid, name, occupation, transactions, assets, income, address, city, state, zip, email, empid)
+VALUES ('2', 'Marquis Alexander', 'Trucker', '7', '16400', '102750', '394 mountain top', 'Jackson', 'TN', '47569', 'males@malextrk.com', '2');
+
+INSERT INTO table_name (clientid, name, occupation, transactions, assets, income, address, city, state, zip, email, empid)
+VALUES ('3', 'Shantell Marshall', 'NYSE', '17', '45700', '297540', '1001 E Center Dr.', 'Boston', 'MA', '29453', 'smarshall@gmail.com', '1');
+
+INSERT INTO table_name (clientid, name, occupation, transactions, assets, income, address, city, state, zip, email, empid)
+VALUES ('4', 'David Clemmons', 'Electrician', '3', '88490', '95870', '685 crossing st', 'San Francisco', 'CA', '35247', 'dclemmons@elecconnect.com', '2');
+
+INSERT INTO table_name (clientid, name, occupation, transactions, assets, income, address, city, state, zip, email, empid)
+VALUES ('5', 'Mark Thomas', 'Fire Fighter', '11', '22000', '64730', '9875 trade st', 'FairFax', 'VA', '48563', 'mthomas@firestat3.org', '2');
+INSERT INTO table_name (clientid, name, occupation, transactions, assets, income, address, city, state, zip, email, empid)
+VALUES ('6', 'Amy Stevns', 'cooking', '11', '38325', '108654', '7056 sharon rd', 'Denver', 'CO', '25369', 'amy@gmail.com', '2');
+
+SELECT * FROM clients;
+
+
